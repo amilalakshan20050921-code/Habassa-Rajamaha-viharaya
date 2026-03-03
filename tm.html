@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ஹபஸ்ஸ புராணம் - ஆய்வறிக்கை</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Noto+Sans+Tamil:wght@300;400;700&family=Arima:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #d4a017;
+            --gold-bright: #ffd700;
+            --bg-dark: #050505;
+            --card-bg: rgba(18, 18, 18, 0.98);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg-dark);
+            color: #e0e0e0;
+            font-family: 'Noto Sans Tamil', sans-serif;
+            line-height: 2;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* --- Spiral Background Animation --- */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 300vmax;
+            height: 300vmax;
+            background: conic-gradient(
+                from 0deg,
+                transparent 0%,
+                rgba(212, 160, 23, 0.12) 5%,
+                transparent 10%,
+                rgba(212, 160, 23, 0.12) 15%,
+                transparent 20%,
+                rgba(212, 160, 23, 0.12) 25%,
+                transparent 30%,
+                rgba(212, 160, 23, 0.12) 35%,
+                transparent 40%,
+                rgba(212, 160, 23, 0.12) 45%,
+                transparent 50%
+            );
+            z-index: -2;
+            animation: rotateSpiral 45s linear infinite;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+        }
+
+        @keyframes rotateSpiral {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        /* --- Hero Section --- */
+        .hero-banner {
+            height: 60vh;
+            background: linear-gradient(rgba(0,0,0,0.7), #050505), 
+                        url('https://images.unsplash.com/photo-1546114945-813446909b93?q=80&w=1500');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            border-bottom: 3px solid var(--gold);
+        }
+
+        .hero-banner h1 {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            color: var(--gold-bright);
+            margin-bottom: 10px;
+        }
+
+        /* --- Kavithai (Poem) --- */
+        .poem-box {
+            max-width: 800px;
+            margin: 40px auto;
+            text-align: center;
+            padding: 30px;
+            border-top: 1px solid rgba(212, 160, 23, 0.3);
+            border-bottom: 1px solid rgba(212, 160, 23, 0.3);
+        }
+
+        .poetry {
+            font-family: 'Arima', cursive;
+            font-size: 1.5rem;
+            color: var(--gold);
+            font-style: italic;
+            line-height: 2.3;
+        }
+
+        /* --- Main Content Area --- */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto 100px;
+            padding: 0 20px;
+        }
+
+        .manuscript-card {
+            background: var(--card-bg);
+            padding: clamp(30px, 6vw, 80px);
+            border-radius: 20px;
+            border: 1px solid rgba(212, 160, 23, 0.2);
+            box-shadow: 0 40px 100px rgba(0,0,0,0.8);
+        }
+
+        h2 {
+            color: var(--gold-bright);
+            font-size: 1.8rem;
+            margin: 50px 0 25px;
+            border-left: 5px solid var(--gold);
+            padding-left: 20px;
+        }
+
+        p {
+            font-size: 1.1rem;
+            text-align: justify;
+            margin-bottom: 30px;
+            color: #cccccc;
+        }
+
+        /* --- Inscription Visual --- */
+        .stone-inscription {
+            background: #0a0a0a;
+            border: 2px solid var(--gold);
+            padding: 40px;
+            margin: 40px 0;
+            text-align: center;
+            border-radius: 10px;
+        }
+
+        .stone-text {
+            font-family: 'Cinzel', serif;
+            font-size: 1.2rem;
+            color: var(--gold-bright);
+            letter-spacing: 2px;
+            display: block;
+            margin-bottom: 20px;
+        }
+
+        .meaning {
+            font-size: 1.1rem;
+            color: var(--gold);
+            border-top: 1px solid rgba(212, 160, 23, 0.2);
+            padding-top: 15px;
+        }
+
+        /* --- Highlight Box --- */
+        .info-box {
+            background: rgba(212, 160, 23, 0.05);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 40px 0;
+        }
+
+        .info-box ul { list-style: none; }
+        .info-box li { margin-bottom: 15px; padding-left: 25px; position: relative; }
+        .info-box li::before { content: "◈"; color: var(--gold); position: absolute; left: 0; }
+
+        /* --- Thought Provoking Box (தமிழ் பதிப்பு) --- */
+        .insight-card {
+            background: linear-gradient(135deg, rgba(212, 160, 23, 0.1), rgba(0,0,0,0.8));
+            border: 1px solid var(--gold);
+            padding: 40px;
+            margin-top: 60px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .insight-card h3 {
+            color: var(--gold-bright);
+            margin-bottom: 20px;
+            font-size: 1.6rem;
+            font-family: 'Arima', cursive;
+        }
+
+        .insight-card em {
+            font-size: 1.3rem;
+            color: #ffffff;
+            display: block;
+            margin-bottom: 15px;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-top: 50px;
+            padding: 15px 40px;
+            border: 2px solid var(--gold);
+            color: var(--gold);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .back-btn:hover { background: var(--gold); color: #000; box-shadow: 0 0 30px var(--gold); }
+    </style>
+</head>
+<body>
+
+    <section class="hero-banner">
+        <h1>ஹபஸ்ஸ</h1>
+        <p style="color: var(--gold); letter-spacing: 3px;">ருஹுணு மரபின் புதைக்கப்பட்ட வரலாறு</p>
+    </section>
+
+    <div class="poem-box">
+        <div class="poetry">
+            கல்லில் செதுக்கிய அரச வம்சத்தின் பெருமை<br>
+            காட்டுயிர்கள் காக்கும் காலத்தின் ரகசியம்<br>
+            கும்புக்கன் ஆறு இன்றும் மௌனமாய் சாட்சி சொல்லும்<br>
+            எம் முன்னோர் புகழை உலகுக்கு பறைசாற்றும்...
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="manuscript-card">
+
+            <h2>பெயர்க்காரணமும் வரலாற்றுப் பின்னணியும்</h2>
+            <p>
+                ஹபஸ்ஸ என்பது மொனராகலை மாவட்டத்தின் ஒக்கம் பிட்டிய பகுதியில் அமைந்துள்ள மிக முக்கியமான தொல்பொருள் தளமாகும். பேராசிரியர் செனரத் பரணவிதானவின் ஆய்வுகளின்படி, இந்த இடத்தின் அசல் பெயர் <b>"நாகமகா விகாரை"</b> ஆகும். "ஹபஸ்ஸ" என்ற பெயர் <b>"சபஸ்ஸ"</b> (உண்மையான இடம்) என்ற சொல்லிலிருந்து உருவானது.
+            </p>
+
+            <h2>ஹபஸ்ஸ கல்வெட்டு (Inscription)</h2>
+            <p>
+                இங்கு காணப்படும் பிராமி கல்வெட்டு இலங்கையின் மறைக்கப்பட்ட வரலாற்றை வெளிச்சத்திற்குக் கொண்டு வருகிறது. அதன் முக்கிய பகுதி வருமாறு:
+            </p>
+
+            <div class="stone-inscription">
+                <span class="stone-text">"SIDDHAM ! VASABA RAJAPUTA PAVAYA TISA MAHARAJ AHA MARUMANAKA UTARA YUVARAJ AHA..."</span>
+                <p class="meaning">
+                    பொருள்: "நன்மை உண்டாகட்டும்! வசப மன்னனின் மகனான திஸ்ஸ மகாராஜாவின் பேரனான உத்தர யுவராஜாவால்..."
+                </p>
+            </div>
+
+            <h2>ஆய்வுத் தகவல்கள்</h2>
+            <div class="info-box">
+                <ul>
+                    <li><b>வசப வம்சம்:</b> இக்கல்வெட்டு கி.பி. 65-109 காலப்பகுதியில் ஆட்சி செய்த வசப மன்னன், அவனது மகன் திஸ்ஸ மற்றும் பேரன் உத்தர யுவராஜா ஆகிய மூவரைப் பற்றியும் உறுதிப்படுத்துகிறது.</li>
+                    <li><b>ருஹுணு ஆட்சி:</b> அனுராதபுர ஆட்சியாளர்கள் ருஹுணு பகுதியை ஆளுவதற்குத் தங்கள் நெருங்கிய உறவினர்களையே (பேரன்களை) நியமித்தனர் என்பதை இது காட்டுகிறது.</li>
+                    <li><b>தொல்பொருள் முக்கியத்துவம்:</b> 1934 ஆம் ஆண்டு "Epigraphia Zeylanica" அறிக்கையில் இந்த இடத்தின் முக்கியத்துவம் விரிவாகப் பதிவு செய்யப்பட்டுள்ளது.</li>
+                </ul>
+            </div>
+
+            <h2>வரலாற்றுச் சிறப்புமிக்க போதிகர மற்றும் ஸ்தூபி</h2>
+            <p>
+                ஹபஸ்ஸவில் உள்ள <b>போதிகர</b> (போதி மரம் இருந்த இல்லம்) மிகவும் தனித்துவமானது. கற்தூண்கள் மீது அமைக்கப்பட்ட இதன் கட்டடக்கலை அனுராதபுர ஆரம்ப காலத்தை ஒத்திருக்கிறது. இங்குள்ள செதுக்கப்பட்ட கற்பலகைகள் ருஹுணு கலைஞர்களின் திறமையை பறைசாற்றுகின்றன.
+            </p>
+            <p>
+                மேலும், இங்குள்ள <b>மகா ஸ்தூபி</b> இன்று சிதைந்த நிலையில் காணப்பட்டாலும், அதன் அடிப்பகுதியின் அகலம் அது ஒரு காலத்தில் மிகப்பெரிய வழிபாட்டு மையமாக இருந்ததை உறுதிப்படுத்துகிறது.
+            </p>
+
+            <h2>துயிலும் புத்தர் சிலை</h2>
+            <p>
+                ஹபஸ்ஸ விகாரையில் உள்ள <b>34 அடி நீளமுடைய துயிலும் புத்தர் சிலை</b> செங்கல் மற்றும் சுண்ணாம்புச் சாந்தால் செதுக்கப்பட்டுள்ளது. ஆயிரக்கணக்கான ஆண்டுகளாக அடர்ந்த காடுகளுக்குள் மறைந்திருந்தாலும், புத்தர் பெருமானின் முகத்தில் உள்ள அமைதி இன்றும் மாறாமல் உள்ளது.
+            </p>
+
+            <div class="insight-card">
+                <h3>வருங்கால சந்ததியினருக்கான ஒரு சிந்தனை...</h3>
+                <em>"வரலாறு என்பது வெறும் புதைக்கப்பட்ட கற்களும் இடிபாடுகளும் அல்ல, அது ஒரு தேசத்தின் ஆன்மா எழுதப்பட்ட உயிருள்ள சாட்சியமாகும்."</em>
+                <p style="text-align: center; color: #e0e0e0;">
+                    ஹபஸ்ஸவின் மௌனமான புத்தர் சிலை நமக்கு உணர்த்துவது என்னவென்றால், அதிகாரங்களும் பேரரசுகளும் கால ஓட்டத்தில் மறைந்தாலும், தர்மத்தின் அடிப்படையில் உருவாக்கப்பட்ட உன்னத படைப்புகள் என்றும் அழியாது என்பதாகும். எமது முன்னோர் இரத்தமும் கண்ணீரும் சிந்திப் பாதுகாத்த இந்த வரலாற்றுச் சொத்துக்களை வருங்கால சந்ததியினருக்குக் கொண்டு சேர்ப்பது எமது புனிதமான கடமையல்லவா?
+                </p>
+            </div>
+
+            <div style="text-align: center;">
+                <a href="index.html" class="back-btn">← மீண்டும் மொழி தெரிவுக்கு</a>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>

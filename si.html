@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>හබැස්ස පුරාවෘත්තය - පර්යේෂණාත්මක වාර්තාව</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Noto+Sans+Sinhala:wght@300;400;700&family=Abhaya+Libre:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #d4a017;
+            --gold-bright: #ffd700;
+            --bg-dark: #050505;
+            --card-bg: rgba(18, 18, 18, 0.98);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg-dark);
+            color: #e0e0e0;
+            font-family: 'Noto Sans Sinhala', sans-serif;
+            line-height: 2;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* --- Spiral Background Animation --- */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 300vmax;
+            height: 300vmax;
+            background: conic-gradient(
+                from 0deg,
+                transparent 0%,
+                rgba(212, 160, 23, 0.15) 5%,
+                transparent 10%,
+                rgba(212, 160, 23, 0.15) 15%,
+                transparent 20%,
+                rgba(212, 160, 23, 0.15) 25%,
+                transparent 30%,
+                rgba(212, 160, 23, 0.15) 35%,
+                transparent 40%,
+                rgba(212, 160, 23, 0.15) 45%,
+                transparent 50%
+            );
+            z-index: -2;
+            animation: rotateSpiral 40s linear infinite;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+        }
+
+        @keyframes rotateSpiral {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        /* --- Hero Section --- */
+        .hero-banner {
+            height: 60vh;
+            background: linear-gradient(rgba(0,0,0,0.7), #050505), 
+                        url('https://images.unsplash.com/photo-1546114945-813446909b93?q=80&w=1500');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            border-bottom: 3px solid var(--gold);
+        }
+
+        .hero-banner h1 {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            color: var(--gold-bright);
+            margin-bottom: 10px;
+        }
+
+        /* --- Nishadasa --- */
+        .poem-box {
+            max-width: 800px;
+            margin: 40px auto;
+            text-align: center;
+            padding: 30px;
+            border-top: 1px solid rgba(212, 160, 23, 0.3);
+            border-bottom: 1px solid rgba(212, 160, 23, 0.3);
+        }
+
+        .nisadasa {
+            font-family: 'Abhaya Libre', serif;
+            font-size: 1.5rem;
+            color: var(--gold);
+            font-style: italic;
+            line-height: 2.3;
+        }
+
+        /* --- Main Content Area --- */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto 100px;
+            padding: 0 20px;
+        }
+
+        .manuscript-card {
+            background: var(--card-bg);
+            padding: clamp(30px, 6vw, 80px);
+            border-radius: 20px;
+            border: 1px solid rgba(212, 160, 23, 0.2);
+            box-shadow: 0 40px 100px rgba(0,0,0,0.8);
+        }
+
+        h2 {
+            color: var(--gold-bright);
+            font-size: 2rem;
+            margin: 50px 0 25px;
+            border-left: 5px solid var(--gold);
+            padding-left: 20px;
+        }
+
+        p {
+            font-size: 1.2rem;
+            text-align: justify;
+            margin-bottom: 30px;
+            color: #cccccc;
+        }
+
+        /* --- Inscription Visual --- */
+        .stone-inscription {
+            background: #0a0a0a;
+            border: 2px solid var(--gold);
+            padding: 40px;
+            margin: 40px 0;
+            text-align: center;
+            border-radius: 10px;
+        }
+
+        .stone-text {
+            font-family: 'Cinzel', serif;
+            font-size: 1.4rem;
+            color: var(--gold-bright);
+            letter-spacing: 2px;
+            display: block;
+            margin-bottom: 20px;
+        }
+
+        .meaning {
+            font-size: 1.1rem;
+            color: var(--gold);
+            border-top: 1px solid rgba(212, 160, 23, 0.2);
+            padding-top: 15px;
+        }
+
+        /* --- Highlight Box --- */
+        .info-box {
+            background: rgba(212, 160, 23, 0.05);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 40px 0;
+        }
+
+        .info-box ul { list-style: none; }
+        .info-box li { margin-bottom: 15px; padding-left: 25px; position: relative; }
+        .info-box li::before { content: "◈"; color: var(--gold); position: absolute; left: 0; }
+
+        /* --- Thought Provoking Box (අලුතින් එක් කළ කොටස) --- */
+        .insight-card {
+            background: linear-gradient(135deg, rgba(212, 160, 23, 0.1), rgba(0,0,0,0.8));
+            border: 1px solid var(--gold);
+            padding: 40px;
+            margin-top: 60px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .insight-card h3 {
+            color: var(--gold-bright);
+            margin-bottom: 20px;
+            font-size: 1.6rem;
+            font-family: 'Abhaya Libre', serif;
+        }
+
+        .insight-card em {
+            font-size: 1.3rem;
+            color: #ffffff;
+            display: block;
+            margin-bottom: 15px;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-top: 50px;
+            padding: 15px 40px;
+            border: 2px solid var(--gold);
+            color: var(--gold);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .back-btn:hover { background: var(--gold); color: #000; box-shadow: 0 0 30px var(--gold); }
+    </style>
+</head>
+<body>
+
+    <section class="hero-banner">
+        <h1>හබැස්ස පුරාවෘත්තය</h1>
+        <p style="color: var(--gold); letter-spacing: 3px;">ලක් ඉතිහාසයේ අභිරහස් හෙළිකරන රුහුණු පින්බිම</p>
+    </section>
+
+    <div class="poem-box">
+        <div class="nisadasa">
+            සෙල් ටැම් මත ලියවුණු රජ පරපුරක අභිමන<br>
+            වැළලී ගියත් මහ වන ගැබ නිසලව අද<br>
+            කුඹුක්කන් ඔය බලා හිඳියි තවමත් අප දෙස<br>
+            අපේ උරුමය සොයා එනතෙක් හෙළ දරුවන්...
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="manuscript-card">
+
+            <h2>ස්ථාන නාමය සහ ඓතිහාසික පසුබිම</h2>
+            <p>
+                හබැස්ස යනු මොනරාගල දිස්ත්‍රික්කයේ ඔක්කම්පිටිය ප්‍රදේශයේ පිහිටි ඉතාම වැදගත් පුරාවිද්‍යා භූමියකි. මහාචාර්ය සෙනරත් පරණවිතාන ශූරීන්ගේ පර්යේෂණවලට අනුව, මෙහි මුල් නාමය <b>"නාගමහා විහාරය"</b> වේ. "හබැස්ස" යන නම නිර්මාණය වී ඇත්තේ <b>"සැබැස්ස"</b> (සැබෑ වූ ස්ථානය) යන අර්ථයෙනි.
+            </p>
+
+            <h2>හබැස්ස ලෙන් ලිපිය (Inscription)</h2>
+            <p>
+                මෙම ස්ථානයෙන් හමුවන සෙල්ලිපිය ලක් ඉතිහාසයේ අඳුරු තැන් රැසක් හෙළිකරයි. එහි සඳහන් සුවිශේෂී පාඨය මෙසේය:
+            </p>
+
+            <div class="stone-inscription">
+                <span class="stone-text">"සිද්ධම් ! වසභ රජපුත පවය තිස මහරජහ මරුමනක උතර යුවරජහ..."</span>
+                <p class="meaning">
+                    අර්ථය: "යහපතක් වේවා! වසභ රජුගේ පුත්‍ර තිස්ස මහාරජුගේ මුණුබුරු වූ උත්තර යුවරාජයා විසින්..."
+                </p>
+            </div>
+
+            <h2>පර්යේෂණාත්මක කරුණු</h2>
+            <div class="info-box">
+                <ul>
+                    <li><b>වසභ රජ පරම්පරාව:</b> ක්‍රි.ව. 65-109 කාලයේ රජ කළ වසභ රජු, ඔහුගේ පුත් තිස්ස මහා රජු සහ මුණුබුරා (මරුමනක) වන උත්තර යුවරාජයා යන තිදෙනා ගැනම තොරතුරු තහවුරු වේ.</li>
+                    <li><b>රුහුණේ පාලනය:</b> අනුරාධපුර පාලකයන් රුහුණේ පාලනය සඳහා තම ලේ නෑයන් (මුණුබුරන්) පත් කර තිබූ බව මෙයින් පැහැදිලි වේ.</li>
+                    <li><b>පුරාවිද්‍යාත්මක වටිනාකම:</b> 1934 වසරේ "Epigraphia Zeylanica" වාර්තාවල මෙම ස්ථානයේ වටිනාකම සහ සෙල්ලිපි පාඨයන් විස්තරාත්මකව ඇතුළත් කර ඇත.</li>
+                </ul>
+            </div>
+
+            <h2>ඓතිහාසික බෝධිඝරය සහ ස්තූපය</h2>
+            <p>
+                 හබැස්ස පුදබිමේ ඇති <b>බෝධිඝරය</b> සුවිශේෂී නිර්මාණයකි. ගල් කණු මත පදනම් වූ මෙහි ගෘහ නිර්මාණ ශිල්පය අනුරාධපුර මුල් යුගයට සමානකම් දක්වයි. බෝධිඝරය වටා ඇති කැටයම් සහිත ගල් පුවරු සහ පියගැටපෙළවල් රුහුණේ කලාකරුවාගේ දක්ෂතාවය කියාපායි. 
+            </p>
+            <p>
+                මීට අමතරව, මෙහි ඇති <b>මහා ස්තූපය</b> අද වන විට තරමක් අභාවයට පත්ව තිබුණද, එහි පාදම පිරික්සීමේදී එය ඉතා විශාල ප්‍රමාණයෙන් තිබූ බව පැහැදිලි වේ. මෙම ස්තූපය වටා තිබූ මල් ආසන සහ ගල් කුළුණු වලින් පෙනී යන්නේ මෙය එකල රුහුණේ ප්‍රධාන ආගමික මධ්‍යස්ථානයක් වූ බවයි.
+            </p>
+
+            <h2>සැතපෙන පිළිම වහන්සේ සහ නටබුන්</h2>
+            <p>
+                හබැස්ස විහාරයේ ඇති <b>අඩි 34 ක් පමණ දිගැති සැතපෙන පිළිම වහන්සේ</b> ගඩොල් සහ හුණු බදාමයෙන් නිමවා ඇත. වසර දහස් ගණනක් මහ වනයට නතු වී තිබුණද, එම පිළිම වහන්සේගේ මුව මඬලෙන් දිස්වන ශාන්ත බව අදටත් නොවෙනස්ව පවතී. මෙහි ඇති ප්‍රතිමා ගෘහයේ නටබුන් මගින් එවකට පැවති උසස් ගෘහ නිර්මාණ ශිල්පය මැනවින් නිරූපණය වේ.
+            </p>
+
+            <div class="insight-card">
+                <h3>මතු පරපුර උදෙසා සිතන්නට යමක්...</h3>
+                <em>"අතීතය යනු හුදෙක් වැළලී ගිය ගල්කුළු සහ නටබුන් සමූහයක් නොව, එය අපේ ජාතියේ අනන්‍යතාවය ලියා ඇති ජීවමාන සාක්ෂියයි."</em>
+                <p style="text-align: center; color: #e0e0e0;">
+                    හබැස්සේ නිසල පිළිම වහන්සේ අපට පසක් කරන්නේ, බලය සහ අධිරාජ්‍යයන් කාලයාගේ වැලි තලාවෙන් වැසී ගියද, ධාර්මික ශිෂ්ටාචාරයක සලකුණු කිසිදා මකා දැමිය නොහැකි බවයි. අපේ මුතුන් මිත්තන් ලෙයින් කඳුළින් රැකගත් මේ උරුමය, මතු පරපුරටත් උරුම කර දීම අපේ පරම වගකීමක් නොවන්නේද?
+                </p>
+            </div>
+
+            <div style="text-align: center;">
+                <a href="index.html" class="back-btn">← නැවත භාෂා තේරීම වෙත</a>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>

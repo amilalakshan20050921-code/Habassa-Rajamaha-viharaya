@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>හැබැස්ස ගැලරිය - රුහුණේ උරුමය</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Abhaya+Libre:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #d4a017;
+            --gold-bright: #ffd700;
+            --bg-dark: #050505;
+            --card-bg: rgba(20, 20, 20, 0.95);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg-dark);
+            color: #e0e0e0;
+            font-family: 'Abhaya Libre', serif;
+            overflow-x: hidden;
+        }
+
+        /* --- ✨ Modern Styled Language Selector --- */
+        .translate-wrapper {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 9999;
+            background: linear-gradient(145deg, #1a1a1a, #000);
+            padding: 8px 15px;
+            border: 1px solid var(--gold);
+            border-radius: 50px;
+            box-shadow: 0 4px 15px rgba(212, 160, 23, 0.3);
+            display: flex;
+            align-items: center;
+            transition: 0.3s;
+        }
+
+        .translate-wrapper:hover {
+            box-shadow: 0 0 20px var(--gold);
+            transform: translateY(-2px);
+        }
+
+        /* Google Translate Inner Styling */
+        #google_translate_element {
+            display: inline-block;
+        }
+
+        .goog-te-gadget-simple {
+            background-color: transparent !important;
+            border: none !important;
+            font-family: 'Abhaya Libre', serif !important;
+            font-size: 14px !important;
+            cursor: pointer;
+        }
+
+        .goog-te-gadget-simple span {
+            color: var(--gold-bright) !important;
+            text-transform: uppercase;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .goog-te-gadget-icon { display: none !important; } /* Hide Google Icon */
+
+        /* --- Background Animation (Spiral) --- */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 50%; left: 50%;
+            width: 200vmax; height: 200vmax;
+            background: conic-gradient(from 0deg, transparent 0%, rgba(212, 160, 23, 0.05) 10%, transparent 20%);
+            z-index: -1;
+            animation: rotateSpiral 60s linear infinite;
+            transform: translate(-50%, -50%);
+        }
+
+        @keyframes rotateSpiral {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        header {
+            text-align: center;
+            padding: 60px 20px;
+            border-bottom: 2px solid var(--gold);
+        }
+
+        header h1 {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(2rem, 6vw, 3.5rem);
+            color: var(--gold-bright);
+            letter-spacing: 5px;
+            text-transform: uppercase;
+        }
+
+        header p {
+            color: var(--gold);
+            font-size: 1.2rem;
+            margin-top: 10px;
+            letter-spacing: 2px;
+        }
+
+        /* --- Gallery Grid --- */
+        .gallery-container {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-gap: 25px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            border: 1px solid rgba(212, 160, 23, 0.3);
+            background: var(--card-bg);
+            transition: 0.4s;
+            cursor: pointer;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            display: block;
+            transition: 0.5s;
+            filter: grayscale(30%);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+            filter: grayscale(0%);
+        }
+
+        .gallery-item:hover {
+            box-shadow: 0 0 25px rgba(212, 160, 23, 0.4);
+            border-color: var(--gold-bright);
+        }
+
+        .img-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.9));
+            color: var(--gold-bright);
+            font-size: 1.1rem;
+            text-align: center;
+            opacity: 0;
+            transition: 0.4s;
+        }
+
+        .gallery-item:hover .img-caption {
+            opacity: 1;
+        }
+
+        .nav-section {
+            text-align: center;
+            margin: 60px 0 100px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 35px;
+            margin: 10px;
+            border: 2px solid var(--gold);
+            color: var(--gold);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: 0.3s;
+            text-transform: uppercase;
+            font-family: 'Cinzel', serif;
+        }
+
+        .btn:hover {
+            background: var(--gold);
+            color: #000;
+            box-shadow: 0 0 20px var(--gold);
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            font-size: 0.9rem;
+            color: #666;
+            border-top: 1px solid rgba(212, 160, 23, 0.1);
+        }
+
+        /* ❌ Hide Google Top Banner */
+        .goog-te-banner-frame.skiptranslate { display: none !important; }
+        body { top: 0px !important; }
+    </style>
+</head>
+<body>
+
+    <div class="translate-wrapper">
+        <span style="color: var(--gold); margin-right: 8px; font-size: 12px;">🌐</span>
+        <div id="google_translate_element"></div>
+    </div>
+
+    <header>
+        <h1>HABASSA ARCHIVES</h1>
+        <p>හැබැස්ස පුරාවිද්‍යා භූමියේ දෘශ්‍ය චාරිකාව</p>
+    </header>
+
+    <div class="gallery-container">
+        <div class="gallery-item">
+            <img src="816fd862-085b-42d5-8bcc-f7cb8fcf56d4.jpg" alt="Reclining Buddha">
+            <div class="img-caption">පුරාණ සැතපෙන බුදු පිළිම වහන්සේ</div>
+        </div>
+        <div class="gallery-item">
+            <img src="7b380f29-a2b2-4277-882c-b5a3480bec9e.jpg" alt="Stupa View">
+            <div class="img-caption">මහා ස්තූපයේ ඉහළ දර්ශනය</div>
+        </div>
+        <div class="gallery-item">
+            <img src="0a02437d-e68e-4b40-b024-1fae8051fd11.jpg" alt="Stupa Brickwork">
+            <div class="img-caption">ස්තූපයේ ගඩොල් නිර්මාණ</div>
+        </div>
+        <div class="gallery-item">
+            <img src="dc7573f4-bb1a-4549-a293-cc1ac91ca96f.jpg" alt="Site View">
+            <div class="img-caption">කැණීම් සිදුකළ පුරාවිද්‍යා භූමිය</div>
+        </div>
+        <div class="gallery-item">
+            <img src="bbed5435-d9d9-4a9f-a1e1-d51a06a8e401.jpg" alt="Jungle">
+            <div class="img-caption">හැබැස්ස වනගත පරිසරය</div>
+        </div>
+        <div class="gallery-item">
+            <img src="fe2281e6-8db2-4081-a552-31b535ff5168.jpg" alt="Pillars">
+            <div class="img-caption">පුරාණ ශෛලමය ගල් පුවරු</div>
+        </div>
+        <div class="gallery-item">
+            <img src="5ac383c4-1958-4f17-a395-84b70cd4aac8.jpg" alt="Restoration">
+            <div class="img-caption">ස්තූපයේ සංරක්ෂණ කටයුතු</div>
+        </div>
+        <div class="gallery-item">
+            <img src="efbd2196-9b8c-4fe3-a167-c9b30d5e2fcf.jpg" alt="Stone Detail">
+            <div class="img-caption">ඓතිහාසික ගල් කණු ශේෂයන්</div>
+        </div>
+        <div class="gallery-item">
+            <img src="0cb4bdef-94d7-4f35-bf58-ebe2bfd7ebcf.jpg" alt="Base">
+            <div class="img-caption">පුරාණ ගොඩනැගිලි පාදම</div>
+        </div>
+        <div class="gallery-item">
+            <img src="3d04f71e-a158-40f6-880a-2bf0fbc9770d.jpg" alt="Rock Artifact">
+            <div class="img-caption">ශෛලමය කලා නිර්මාණ</div>
+        </div>
+    </div>
+
+    <div class="nav-section">
+        <a href="index.html" class="btn">ප්‍රධාන මෙනුවට</a>
+    </div>
+
+    <footer>
+        &copy; 2026 Habassa Legacy Project. රුහුණේ ඉතිහාසය සුරකිමු.
+    </footer>
+
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'si',
+                includedLanguages: 'si,en,ta,ko,ja',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                autoDisplay: false
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+</body>
+</html>

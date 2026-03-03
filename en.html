@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Legend of Habassa - Experimental Report</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Poppins:wght@300;400;600&family=Crimson+Text:ital,wght@1,400;1,600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #d4a017;
+            --gold-bright: #ffd700;
+            --bg-dark: #050505;
+            --card-bg: rgba(18, 18, 18, 0.98);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg-dark);
+            color: #e0e0e0;
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.8;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* --- Spiral Background Animation --- */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 300vmax;
+            height: 300vmax;
+            background: conic-gradient(
+                from 0deg,
+                transparent 0%,
+                rgba(212, 160, 23, 0.12) 5%,
+                transparent 10%,
+                rgba(212, 160, 23, 0.12) 15%,
+                transparent 20%,
+                rgba(212, 160, 23, 0.12) 25%,
+                transparent 30%,
+                rgba(212, 160, 23, 0.12) 35%,
+                transparent 40%,
+                rgba(212, 160, 23, 0.12) 45%,
+                transparent 50%
+            );
+            z-index: -2;
+            animation: rotateSpiral 45s linear infinite;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+        }
+
+        @keyframes rotateSpiral {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        /* --- Hero Section --- */
+        .hero-banner {
+            height: 60vh;
+            background: linear-gradient(rgba(0,0,0,0.7), #050505), 
+                        url('https://images.unsplash.com/photo-1546114945-813446909b93?q=80&w=1500');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            border-bottom: 3px solid var(--gold);
+        }
+
+        .hero-banner h1 {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            color: var(--gold-bright);
+            margin-bottom: 10px;
+            letter-spacing: 4px;
+        }
+
+        /* --- Poetry Section --- */
+        .poem-box {
+            max-width: 800px;
+            margin: 40px auto;
+            text-align: center;
+            padding: 30px;
+            border-top: 1px solid rgba(212, 160, 23, 0.3);
+            border-bottom: 1px solid rgba(212, 160, 23, 0.3);
+        }
+
+        .poetry {
+            font-family: 'Crimson Text', serif;
+            font-size: 1.4rem;
+            color: var(--gold);
+            font-style: italic;
+            line-height: 1.6;
+        }
+
+        /* --- Main Content Area --- */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto 100px;
+            padding: 0 20px;
+        }
+
+        .manuscript-card {
+            background: var(--card-bg);
+            padding: clamp(30px, 6vw, 80px);
+            border-radius: 20px;
+            border: 1px solid rgba(212, 160, 23, 0.2);
+            box-shadow: 0 40px 100px rgba(0,0,0,0.8);
+        }
+
+        h2 {
+            font-family: 'Cinzel', serif;
+            color: var(--gold-bright);
+            font-size: 1.8rem;
+            margin: 50px 0 25px;
+            border-left: 5px solid var(--gold);
+            padding-left: 20px;
+        }
+
+        p {
+            font-size: 1.1rem;
+            text-align: justify;
+            margin-bottom: 30px;
+            color: #cccccc;
+        }
+
+        /* --- Inscription Visual --- */
+        .stone-inscription {
+            background: #0a0a0a;
+            border: 2px solid var(--gold);
+            padding: 40px;
+            margin: 40px 0;
+            text-align: center;
+            border-radius: 10px;
+        }
+
+        .stone-text {
+            font-family: 'Cinzel', serif;
+            font-size: 1.2rem;
+            color: var(--gold-bright);
+            letter-spacing: 2px;
+            display: block;
+            margin-bottom: 20px;
+        }
+
+        .meaning {
+            font-family: 'Crimson Text', serif;
+            font-size: 1.2rem;
+            color: var(--gold);
+            border-top: 1px solid rgba(212, 160, 23, 0.2);
+            padding-top: 15px;
+        }
+
+        /* --- Highlight Box --- */
+        .info-box {
+            background: rgba(212, 160, 23, 0.05);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 40px 0;
+        }
+
+        .info-box ul { list-style: none; }
+        .info-box li { margin-bottom: 15px; padding-left: 25px; position: relative; font-size: 1rem; }
+        .info-box li::before { content: "◈"; color: var(--gold); position: absolute; left: 0; }
+
+        /* --- Thought Provoking Box --- */
+        .insight-card {
+            background: linear-gradient(135deg, rgba(212, 160, 23, 0.1), rgba(0,0,0,0.8));
+            border: 1px solid var(--gold);
+            padding: 40px;
+            margin-top: 60px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .insight-card h3 {
+            color: var(--gold-bright);
+            margin-bottom: 20px;
+            font-size: 1.6rem;
+            font-family: 'Cinzel', serif;
+        }
+
+        .insight-card em {
+            font-size: 1.3rem;
+            color: #ffffff;
+            display: block;
+            margin-bottom: 15px;
+            font-family: 'Crimson Text', serif;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-top: 50px;
+            padding: 15px 40px;
+            border: 2px solid var(--gold);
+            color: var(--gold);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: 0.3s;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+
+        .back-btn:hover { background: var(--gold); color: #000; box-shadow: 0 0 30px var(--gold); }
+    </style>
+</head>
+<body>
+
+    <section class="hero-banner">
+        <h1>HABASSA</h1>
+        <p style="color: var(--gold); letter-spacing: 5px; font-weight: 300;">UNVEILING THE ANCIENT RUHUNU HERITAGE</p>
+    </section>
+
+    <div class="poem-box">
+        <div class="poetry">
+            Grandeur of a royal lineage etched upon the stone,<br>
+            Silent in the wildwood, the secrets remain unknown.<br>
+            The river Kumbukkan flows, watching us through time,<br>
+            Waiting for the heirs to reclaim the past sublime...
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="manuscript-card">
+
+            <h2>Etymology and Historical Context</h2>
+            <p>
+                Habassa is a significantly important archaeological site located in the Okkampitiya area of the Monaragala District. According to the research of Professor Senarath Paranavithana, the original name of this site was <b>"Naga Maha Vihara"</b>. The name "Habassa" is derived from the word <b>"Sabassa"</b>, which translates to "The Realized Place" or "The True Spot."
+            </p>
+
+            <h2>The Cave Inscription</h2>
+            <p>
+                The inscription found at this site clarifies many obscure areas of Sri Lankan history. The unique text of the Brahmi inscription is as follows:
+            </p>
+
+            <div class="stone-inscription">
+                <span class="stone-text">"SIDDHAM ! VASABA RAJAPUTA PAVAYA TISA MAHARAJ AHA MARUMANAKA UTARA YUVARAJ AHA..."</span>
+                <p class="meaning">
+                    Meaning: "Prosperity! By the sub-king Uttara, the grandson of the Great King Tissa and the son of King Vasaba..."
+                </p>
+            </div>
+
+            <h2>Experimental Findings</h2>
+            <div class="info-box">
+                <ul>
+                    <li><b>The Vasaba Dynasty:</b> This inscription confirms the lineage of three key rulers: King Vasaba (65-109 AD), his son King Tissa, and his grandson (Marumanaka) sub-king Uttara.</li>
+                    <li><b>Governance of Ruhuna:</b> It highlights that the Anuradhapura monarchs appointed their close relatives (grandsons) to govern the Ruhuna region, ensuring a centralized control.</li>
+                    <li><b>Archaeological Significance:</b> These findings were detailed in the "Epigraphia Zeylanica" Volume IV (1934), documenting the script and the historical value of the site.</li>
+                </ul>
+            </div>
+
+            <h2>Historical Bodhigara and the Stupa</h2>
+            <p>
+                 the <b>Bodhigara</b> (Bo-tree house) at Habassa is an extraordinary structure. Built on stone pillars, its architectural style bears a strong resemblance to the early Anuradhapura period. The carved stone slabs and the ornate stairways surrounding the Bodhigara showcase the immense craftsmanship of ancient Ruhuna.
+            </p>
+            <p>
+                Furthermore, the <b>Maha Stupa</b>, though currently in a state of ruin, suggests a massive original structure. The remains of its base, flower altars (Mal Asana), and stone columns indicate that Habassa was once a primary religious hub in the southern kingdom.
+            </p>
+
+            <h2>The Reclining Buddha Statue</h2>
+            <p>
+                The <b>34-foot-long reclining Buddha statue</b> at Habassa Vihara is constructed from brick and lime mortar. Despite being exposed to the elements and the thick jungle for thousands of years, the serene expression on the face of the Buddha remains remarkably intact. The ruins of the image house (Patimaghara) surrounding it illustrate the advanced structural engineering of that era.
+            </p>
+
+            <div class="insight-card">
+                <h3>A Reflection for the Generations to Come...</h3>
+                <em>"The past is not merely a collection of buried stones and ruins; it is the living testimony of a nation's identity."</em>
+                <p style="text-align: center; color: #e0e0e0;">
+                    The silent Buddha of Habassa reminds us that while empires and power fade into the sands of time, the creations born of righteous civilization can never be truly erased. This heritage, protected by the blood and tears of our ancestors, remains a sacred trust. Is it not our duty to ensure it lives on for those who follow?
+                </p>
+            </div>
+
+            <div style="text-align: center;">
+                <a href="index.html" class="back-btn">← Back to Language Selection</a>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>

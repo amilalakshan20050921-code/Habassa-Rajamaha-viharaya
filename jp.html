@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ハバッサの伝説 - 調査報告書</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Sawarabi+Mincho&family=Noto+Sans+JP:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #d4a017;
+            --gold-bright: #ffd700;
+            --bg-dark: #050505;
+            --card-bg: rgba(18, 18, 18, 0.98);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg-dark);
+            color: #e0e0e0;
+            font-family: 'Noto Sans JP', sans-serif;
+            line-height: 2.1;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* --- 螺旋（Spiral）バックグラウンド・アニメーション --- */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 300vmax;
+            height: 300vmax;
+            background: conic-gradient(
+                from 0deg,
+                transparent 0%,
+                rgba(212, 160, 23, 0.12) 5%,
+                transparent 10%,
+                rgba(212, 160, 23, 0.12) 15%,
+                transparent 20%,
+                rgba(212, 160, 23, 0.12) 25%,
+                transparent 30%,
+                rgba(212, 160, 23, 0.12) 35%,
+                transparent 40%,
+                rgba(212, 160, 23, 0.12) 45%,
+                transparent 50%
+            );
+            z-index: -2;
+            animation: rotateSpiral 45s linear infinite;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+        }
+
+        @keyframes rotateSpiral {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        /* --- Hero Section --- */
+        .hero-banner {
+            height: 60vh;
+            background: linear-gradient(rgba(0,0,0,0.7), #050505), 
+                        url('https://images.unsplash.com/photo-1546114945-813446909b93?q=80&w=1500');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            border-bottom: 3px solid var(--gold);
+        }
+
+        .hero-banner h1 {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            color: var(--gold-bright);
+            margin-bottom: 10px;
+            letter-spacing: 6px;
+        }
+
+        /* --- Poetry Section (Waka Style) --- */
+        .poem-box {
+            max-width: 800px;
+            margin: 40px auto;
+            text-align: center;
+            padding: 30px;
+            border-top: 1px solid rgba(212, 160, 23, 0.3);
+            border-bottom: 1px solid rgba(212, 160, 23, 0.3);
+        }
+
+        .poetry {
+            font-family: 'Sawarabi Mincho', serif;
+            font-size: 1.4rem;
+            color: var(--gold);
+            font-style: italic;
+            line-height: 2.5;
+        }
+
+        /* --- Main Content Area --- */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto 100px;
+            padding: 0 20px;
+        }
+
+        .manuscript-card {
+            background: var(--card-bg);
+            padding: clamp(30px, 6vw, 80px);
+            border-radius: 20px;
+            border: 1px solid rgba(212, 160, 23, 0.2);
+            box-shadow: 0 40px 100px rgba(0,0,0,0.8);
+        }
+
+        h2 {
+            font-family: 'Sawarabi Mincho', serif;
+            color: var(--gold-bright);
+            font-size: 1.8rem;
+            margin: 50px 0 25px;
+            border-left: 5px solid var(--gold);
+            padding-left: 20px;
+        }
+
+        p {
+            font-size: 1.05rem;
+            text-align: justify;
+            margin-bottom: 30px;
+            color: #cccccc;
+        }
+
+        /* --- Inscription Visual --- */
+        .stone-inscription {
+            background: #0a0a0a;
+            border: 2px solid var(--gold);
+            padding: 40px;
+            margin: 40px 0;
+            text-align: center;
+            border-radius: 10px;
+        }
+
+        .stone-text {
+            font-family: 'Cinzel', serif;
+            font-size: 1.2rem;
+            color: var(--gold-bright);
+            letter-spacing: 2px;
+            display: block;
+            margin-bottom: 20px;
+        }
+
+        .meaning {
+            font-family: 'Sawarabi Mincho', serif;
+            font-size: 1.1rem;
+            color: var(--gold);
+            border-top: 1px solid rgba(212, 160, 23, 0.2);
+            padding-top: 15px;
+        }
+
+        /* --- Highlight Box --- */
+        .info-box {
+            background: rgba(212, 160, 23, 0.05);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 40px 0;
+        }
+
+        .info-box ul { list-style: none; }
+        .info-box li { margin-bottom: 15px; padding-left: 25px; position: relative; }
+        .info-box li::before { content: "◈"; color: var(--gold); position: absolute; left: 0; }
+
+        /* --- Insight Card (Thought Provoking Box) --- */
+        .insight-card {
+            background: linear-gradient(135deg, rgba(212, 160, 23, 0.1), rgba(0,0,0,0.8));
+            border: 1px solid var(--gold);
+            padding: 40px;
+            margin-top: 60px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .insight-card h3 {
+            color: var(--gold-bright);
+            margin-bottom: 20px;
+            font-size: 1.6rem;
+            font-family: 'Sawarabi Mincho', serif;
+        }
+
+        .insight-card em {
+            font-size: 1.2rem;
+            color: #ffffff;
+            display: block;
+            margin-bottom: 15px;
+            font-family: 'Sawarabi Mincho', serif;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-top: 50px;
+            padding: 15px 40px;
+            border: 2px solid var(--gold);
+            color: var(--gold);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: 0.3s;
+            text-transform: uppercase;
+        }
+
+        .back-btn:hover { background: var(--gold); color: #000; box-shadow: 0 0 30px var(--gold); }
+    </style>
+</head>
+<body>
+
+    <section class="hero-banner">
+        <h1>HABASSA</h1>
+        <p style="color: var(--gold); letter-spacing: 3px;">ルフヌの地に眠る古代の記憶</p>
+    </section>
+
+    <div class="poem-box">
+        <div class="poetry">
+            石に刻まれし 王朝の誇りかな<br>
+            深き森に眠る 古の物語<br>
+            クンブッカン川は 静かに見守る<br>
+            末裔たちが その志を継ぐ日まで...
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="manuscript-card">
+
+            <h2>地名の由来と歴史的背景</h2>
+            <p>
+                ハバッサ（Habassa）は、スリランカのモナラーガラ郡オッカムピティヤに位置する非常に重要な考古学的遺跡です。セナラ・パラナヴィターナ教授の研究によれば、この地の本来の名は<b>「ナーガ・マハー・ヴィハーラ」</b>でした。「ハバッサ」という名は、「真実の場所」を意味する<b>「サバッサ（Sabassa）」</b>という言葉に由来しています。
+            </p>
+
+            <h2>ハバッサの碑文 (Inscription)</h2>
+            <p>
+                この地で発見された碑文は、スリランカ史の空白を埋める重要な鍵となっています。その内容は以下の通りです：
+            </p>
+
+            <div class="stone-inscription">
+                <span class="stone-text">"SIDDHAM ! VASABA RAJAPUTA PAVAYA TISA MAHARAJ AHA MARUMANAKA UTARA YUVARAJ AHA..."</span>
+                <p class="meaning">
+                    解釈：「幸いあれ！ヴァサバ王の息子ティッサ大王の孫である、ウッタラ副王によって...」
+                </p>
+            </div>
+
+            <h2>調査結果と歴史的事実</h2>
+            <div class="info-box">
+                <ul>
+                    <li><b>ヴァサバ王朝の確認：</b> この碑文は、紀元65〜109年に統治したヴァサバ王、その息子ティッサ大王、そして孫（Marumanaka）であるウッタラ副王の血統を裏付けるものです。</li>
+                    <li><b>ルフヌの統治：</b> アヌラーダプラの統治者がルフヌ地方を管理するために、自身の近親者（孫など）を任命していたことが明らかになりました。</li>
+                    <li><b>考古学的価値：</b> 1934年の「Epigraphia Zeylanica」第4巻に、この遺跡の重要性と碑文の詳細が公式に記録されています。</li>
+                </ul>
+            </div>
+
+            <h2>歴史的なボーディガラとストゥーパ</h2>
+            <p>
+                ハバッサの<b>ボーディガラ（菩提樹の家）</b>は極めて独創的な構造をしています。石柱の上に建てられたこの建築様式は、アヌラーダプラ初期時代の建築技術の粋を集めたものです。精巧に彫刻された石板や階段は、古代ルフヌの職人たちの卓越した技術を物語っています。
+            </p>
+            <p>
+                また、ここの<b>大ストゥーパ（仏塔）</b>は現在崩壊していますが、その巨大な基壇跡は、ここがかつて南部王国における主要な信仰の拠点であったことを示しています。
+            </p>
+
+            <h2>涅槃仏（ねはんぶつ）</h2>
+            <p>
+                ハバッサ寺院には、レンガと漆喰で作られた<b>全長約34フィート（約10メートル）の涅槃仏</b>が安置されています。数千年もの間、密林の中に埋もれていたにもかかわらず、その穏やかな表情は今も失われていません。仏像を安置していた堂（Patimaghara）の遺構からは、当時の高度な建築工学を垣間見ることができます。
+            </p>
+
+            <div class="insight-card">
+                <h3>未来へ語り継ぐ歴史</h3>
+                <em>「歴史とは単なる過去の記録ではなく、我々の魂が宿る生きた証である。」</em>
+                <p style="text-align: center; color: #e0e0e0; font-size: 0.95rem;">
+                    ハバッサに横たわる仏陀の微笑みは、諸行無常の世において、真に価値あるものは石や形ではなく、そこに込められた「献身」であることを伝えています。先人たちが守り抜いたこのルフヌの誇りを、次世代へと繋ぐことは、今を生きる私たちの聖なる義務なのです。
+                </p>
+            </div>
+
+            <div style="text-align: center;">
+                <a href="index.html" class="back-btn">← 言語選択に戻る</a>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>하밧사 전설 - 연구 보고서</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Noto+Sans+KR:wght@300;400;700&family=Nanum+Myeongjo:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #d4a017;
+            --gold-bright: #ffd700;
+            --bg-dark: #050505;
+            --card-bg: rgba(18, 18, 18, 0.98);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg-dark);
+            color: #e0e0e0;
+            font-family: 'Noto Sans KR', sans-serif;
+            line-height: 2;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* --- Spiral Background Animation --- */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 300vmax;
+            height: 300vmax;
+            background: conic-gradient(
+                from 0deg,
+                transparent 0%,
+                rgba(212, 160, 23, 0.12) 5%,
+                transparent 10%,
+                rgba(212, 160, 23, 0.12) 15%,
+                transparent 20%,
+                rgba(212, 160, 23, 0.12) 25%,
+                transparent 30%,
+                rgba(212, 160, 23, 0.12) 35%,
+                transparent 40%,
+                rgba(212, 160, 23, 0.12) 45%,
+                transparent 50%
+            );
+            z-index: -2;
+            animation: rotateSpiral 45s linear infinite;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+        }
+
+        @keyframes rotateSpiral {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        /* --- Hero Section --- */
+        .hero-banner {
+            height: 60vh;
+            background: linear-gradient(rgba(0,0,0,0.7), #050505), 
+                        url('https://images.unsplash.com/photo-1546114945-813446909b93?q=80&w=1500');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            border-bottom: 3px solid var(--gold);
+        }
+
+        .hero-banner h1 {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            color: var(--gold-bright);
+            margin-bottom: 10px;
+            letter-spacing: 5px;
+        }
+
+        /* --- Poetry Section (Sijo style) --- */
+        .poem-box {
+            max-width: 800px;
+            margin: 40px auto;
+            text-align: center;
+            padding: 30px;
+            border-top: 1px solid rgba(212, 160, 23, 0.3);
+            border-bottom: 1px solid rgba(212, 160, 23, 0.3);
+        }
+
+        .poetry {
+            font-family: 'Nanum Myeongjo', serif;
+            font-size: 1.4rem;
+            color: var(--gold);
+            font-style: italic;
+            line-height: 2.3;
+        }
+
+        /* --- Main Content Area --- */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto 100px;
+            padding: 0 20px;
+        }
+
+        .manuscript-card {
+            background: var(--card-bg);
+            padding: clamp(30px, 6vw, 80px);
+            border-radius: 20px;
+            border: 1px solid rgba(212, 160, 23, 0.2);
+            box-shadow: 0 40px 100px rgba(0,0,0,0.8);
+        }
+
+        h2 {
+            font-family: 'Cinzel', serif;
+            color: var(--gold-bright);
+            font-size: 1.8rem;
+            margin: 50px 0 25px;
+            border-left: 5px solid var(--gold);
+            padding-left: 20px;
+        }
+
+        p {
+            font-size: 1.1rem;
+            text-align: justify;
+            margin-bottom: 30px;
+            color: #cccccc;
+        }
+
+        /* --- Inscription Visual --- */
+        .stone-inscription {
+            background: #0a0a0a;
+            border: 2px solid var(--gold);
+            padding: 40px;
+            margin: 40px 0;
+            text-align: center;
+            border-radius: 10px;
+        }
+
+        .stone-text {
+            font-family: 'Cinzel', serif;
+            font-size: 1.2rem;
+            color: var(--gold-bright);
+            letter-spacing: 2px;
+            display: block;
+            margin-bottom: 20px;
+        }
+
+        .meaning {
+            font-family: 'Nanum Myeongjo', serif;
+            font-size: 1.2rem;
+            color: var(--gold);
+            border-top: 1px solid rgba(212, 160, 23, 0.2);
+            padding-top: 15px;
+        }
+
+        /* --- Highlight Box --- */
+        .info-box {
+            background: rgba(212, 160, 23, 0.05);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 40px 0;
+        }
+
+        .info-box ul { list-style: none; }
+        .info-box li { margin-bottom: 15px; padding-left: 25px; position: relative; }
+        .info-box li::before { content: "◈"; color: var(--gold); position: absolute; left: 0; }
+
+        /* --- Thought Provoking Box (Insight Card) --- */
+        .insight-card {
+            background: linear-gradient(135deg, rgba(212, 160, 23, 0.1), rgba(0,0,0,0.8));
+            border: 1px solid var(--gold);
+            padding: 40px;
+            margin-top: 60px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .insight-card h3 {
+            color: var(--gold-bright);
+            margin-bottom: 20px;
+            font-size: 1.6rem;
+            font-family: 'Nanum Myeongjo', serif;
+        }
+
+        .insight-card em {
+            font-size: 1.3rem;
+            color: #ffffff;
+            display: block;
+            margin-bottom: 15px;
+            font-family: 'Nanum Myeongjo', serif;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-top: 50px;
+            padding: 15px 40px;
+            border: 2px solid var(--gold);
+            color: var(--gold);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: 0.3s;
+            text-transform: uppercase;
+        }
+
+        .back-btn:hover { background: var(--gold); color: #000; box-shadow: 0 0 30px var(--gold); }
+    </style>
+</head>
+<body>
+
+    <section class="hero-banner">
+        <h1>HABASSA</h1>
+        <p style="color: var(--gold); letter-spacing: 3px;">루후누의 숨겨진 고대 유산</p>
+    </section>
+
+    <div class="poem-box">
+        <div class="poetry">
+            비석에 새겨진 왕조의 자부심이여,<br>
+            깊은 숲속에 잠든 신비로운 역사여.<br>
+            쿰북칸 강은 여전히 우리를 지켜보며,<br>
+            후손들이 그 영광을 찾길 기다리네...
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="manuscript-card">
+
+            <h2>지명 유래와 역사적 배경</h2>
+            <p>
+                하밧사(Habassa)는 스리랑카 모나라갈라(Monaragala) 지역의 오캄피티야에 위치한 매우 중요한 고고학 유적지입니다. 세나랏 파라나비타나(Senarath Paranavithana) 교수의 연구에 따르면, 이곳의 원래 명칭은 <b>'나가 마하 비하라(Naga Maha Vihara)'</b>였습니다. '하밧사'라는 이름은 '진실된 장소'를 의미하는 <b>'사밧사(Sabassa)'</b>에서 유래되었습니다.
+            </p>
+
+            <h2>하밧사 비석 비문 (Inscription)</h2>
+            <p>
+                이곳에서 발견된 비문은 스리랑카 역사의 미스터리를 푸는 열쇠가 됩니다. 비문의 내용은 다음과 같습니다:
+            </p>
+
+            <div class="stone-inscription">
+                <span class="stone-text">"SIDDHAM ! VASABA RAJAPUTA PAVAYA TISA MAHARAJ AHA MARUMANAKA UTARA YUVARAJ AHA..."</span>
+                <p class="meaning">
+                    해석: "번영이 있기를! 바사바 왕의 아들 티사 대왕의 손자인 우타라 부왕에 의하여..."
+                </p>
+            </div>
+
+            <h2>연구 결과 및 주요 사실</h2>
+            <div class="info-box">
+                <ul>
+                    <li><b>바사바 왕조 확인:</b> 이 비문은 서기 65-109년에 통치한 바사바 왕, 그의 아들 티사 대왕, 그리고 손자(Marumanaka)인 우타라 부왕의 혈통을 입증합니다.</li>
+                    <li><b>루후누의 통치:</b> 아누라다푸라의 통치자들이 루후누 지역을 다스리기 위해 자신의 가까운 친척(손자)을 임명했음을 보여줍니다.</li>
+                    <li><b>고고학적 가치:</b> 1934년 'Epigraphia Zeylanica' 제4권에 이 유적지의 비문과 역사적 가치가 상세히 기록되어 있습니다.</li>
+                </ul>
+            </div>
+
+            <h2>역사적인 보디가라와 스투파</h2>
+            <p>
+                 하밧사의 <b>보디가라(Bodhigara, 보리수 집)</b>는 매우 독특한 구조를 가지고 있습니다. 돌기둥 위에 세워진 이 건축 양식은 아누라다푸라 초기 시대의 정수를 보여줍니다. 정교하게 조각된 돌판과 계단은 고대 루후누 예술가들의 뛰어난 기술력을 증명합니다.
+            </p>
+            <p>
+                또한 이곳의 <b>대스투파(Maha Stupa)</b>는 현재 비록 훼손되었으나, 거대한 기단부와 주변의 유물들은 이곳이 과거 남부 왕국의 중심적인 종교 거점이었음을 말해줍니다.
+            </p>
+
+            <h2>와불상 (Reclining Buddha)</h2>
+            <p>
+                하밧사 사원에는 벽돌과 석회 반죽으로 만들어진 <b>약 34피트 길이의 와불상</b>이 모셔져 있습니다. 수천 년 동안 정글 속에 방치되었음에도 불구하고, 부처님의 자비로운 미소는 여전히 변함없이 남아 있습니다. 불상을 모셨던 불전(Patimaghara) 유적은 당시의 고도화된 건축 공학을 잘 보여줍니다.
+            </p>
+
+            <div class="insight-card">
+                <h3>다음 세대를 위한 성찰...</h3>
+                <em>"역사는 단순히 묻혀 있는 돌이나 폐허가 아닙니다. 그것은 한 국가의 정체성을 보여주는 살아있는 증거입니다."</em>
+                <p style="text-align: center; color: #e0e0e0;">
+                    하밧사의 침묵하는 와불상은 제국과 권력은 시간의 흐름 속에 사라지지만, 정의로운 문명을 기반으로 탄생한 위대한 유산은 결코 지워지지 않는다는 것을 상기시켜 줍니다. 조상들이 피와 땀으로 지켜온 이 유산은 우리에게 맡겨진 신성한 신뢰입니다. 우리 뒤에 올 이들을 위해 이를 계승하는 것은 우리의 당연한 의무가 아닐까요?
+                </p>
+            </div>
+
+            <div style="text-align: center;">
+                <a href="index.html" class="back-btn">← 언어 선택으로 돌아가기</a>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>

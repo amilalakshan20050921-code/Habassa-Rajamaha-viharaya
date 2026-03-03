@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Habassa Royal Temple</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root { --gold: #d4a017; --gold-bright: #ffd700; --bg-dark: #050505; --input-bg: rgba(255, 255, 255, 0.05); }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: var(--bg-dark); color: #fff; font-family: 'Poppins', sans-serif; min-height: 100vh; display: flex; justify-content: center; align-items: center; padding: 20px; }
+        .bg-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at center, rgba(184, 134, 11, 0.1) 0%, #050505 100%); z-index: -1; }
+        .auth-card { background: rgba(15, 15, 15, 0.95); width: 100%; max-width: 450px; padding: 40px; border-radius: 20px; border: 1px solid rgba(212, 160, 23, 0.3); box-shadow: 0 20px 50px rgba(0,0,0,0.8); text-align: center; }
+        h2 { font-family: 'Cinzel', serif; color: var(--gold-bright); font-size: 2rem; margin-bottom: 30px; letter-spacing: 3px; }
+        .input-group { margin-bottom: 15px; text-align: left; }
+        .input-group label { display: block; font-size: 0.85rem; color: var(--gold); margin-bottom: 6px; }
+        .input-group input { width: 100%; padding: 12px 15px; background: var(--input-bg); border: 1px solid rgba(212, 160, 23, 0.2); border-radius: 8px; color: #fff; outline: none; }
+        .btn-primary { width: 100%; padding: 14px; background: linear-gradient(45deg, #b8860b, #ffd700); border: none; border-radius: 8px; color: #000; font-weight: 600; cursor: pointer; transition: 0.3s; margin-top: 10px; }
+        .btn-primary:hover { transform: scale(1.02); }
+        .divider { margin: 25px 0; position: relative; height: 1px; background: rgba(212, 160, 23, 0.2); }
+        .divider span { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #0f0f0f; padding: 0 15px; font-size: 0.8rem; color: #777; }
+        .social-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-bottom: 25px; }
+        .social-btn { background: var(--input-bg); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 10px; padding: 12px; color: #fff; font-size: 1.2rem; cursor: pointer; transition: 0.3s; }
+        .social-btn:hover { background: rgba(212, 160, 23, 0.1); border-color: var(--gold); }
+    </style>
+</head>
+<body>
+
+    <div class="bg-overlay"></div>
+
+    <div class="auth-card">
+        <h2>SIGN UP</h2>
+        
+        <div class="social-grid">
+            <button class="social-btn" id="google-btn"><i class="fab fa-google"></i></button>
+            <button class="social-btn" id="apple-btn"><i class="fab fa-apple"></i></button>
+            <button class="social-btn" id="ms-btn"><i class="fab fa-microsoft"></i></button>
+        </div>
+
+        <div class="divider"><span>OR REGISTER</span></div>
+
+        <form id="signup-form">
+            <div class="input-group">
+                <label>Full Name</label>
+                <input type="text" id="user-name" placeholder="John Doe" required>
+            </div>
+            <div class="input-group">
+                <label>Email Address</label>
+                <input type="email" id="user-email" placeholder="example@email.com" required>
+            </div>
+            <div class="input-group">
+                <label>Password</label>
+                <input type="password" id="user-pass" placeholder="Min. 8 characters" required>
+            </div>
+            <button type="submit" class="btn-primary">CREATE ACCOUNT</button>
+        </form>
+
+        <p style="margin-top:20px; font-size: 0.9rem; color: #aaa;">
+            Already have an account? <a href="login.html" style="color: var(--gold); text-decoration:none;">Login Here</a>
+        </p>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getAuth, createUserWithEmailAndPassword, GoogleAuthProvider, OAuthProvider, signInWithPopup, updateProfile } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+        // Your Firebase Configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyAjaZhpLbgkfmLYR17W4J6zv9f6D_Z9K1w",
+            authDomain: "project-90-3bc1e.firebaseapp.com",
+            projectId: "project-90-3bc1e",
+            storageBucket: "project-90-3bc1e.firebasestorage.app",
+            messagingSenderId: "367609962151",
+            appId: "1:367609962151:web:4b6b5d9b238ea7cbf3c582"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        
+        // Providers සෙට් කිරීම
+        const googleProvider = new GoogleAuthProvider();
+        const appleProvider = new OAuthProvider('apple.com');
+        const microsoftProvider = new OAuthProvider('microsoft.com');
+
+        // 1. Email/Password Signup
+        const signupForm = document.getElementById('signup-form');
+        signupForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const name = document.getElementById('user-name').value;
+            const email = document.getElementById('user-email').value;
+            const pass = document.getElementById('user-pass').value;
+
+            try {
+                const userCredential = await createUserWithEmailAndPassword(auth, email, pass);
+                await updateProfile(userCredential.user, { displayName: name });
+                localStorage.setItem('currentUser', name);
+                window.location.href = "index.html";
+            } catch (error) {
+                alert("Signup Error: " + error.message);
+            }
+        });
+
+        // 2. Google Login
+        document.getElementById('google-btn').addEventListener('click', async () => {
+            try {
+                const result = await signInWithPopup(auth, googleProvider);
+                localStorage.setItem('currentUser', result.user.displayName);
+                window.location.href = "index.html";
+            } catch (error) {
+                alert("Google Login Error: " + error.message);
+            }
+        });
+
+        // 3. Apple Login
+        document.getElementById('apple-btn').addEventListener('click', async () => {
+            try {
+                const result = await signInWithPopup(auth, appleProvider);
+                const displayName = result.user.displayName || result.user.email.split('@')[0];
+                localStorage.setItem('currentUser', displayName);
+                window.location.href = "index.html";
+            } catch (error) {
+                alert("Apple Login Error: " + error.message);
+            }
+        });
+
+        // 4. Microsoft Login
+        document.getElementById('ms-btn').addEventListener('click', async () => {
+            try {
+                const result = await signInWithPopup(auth, microsoftProvider);
+                localStorage.setItem('currentUser', result.user.displayName || "Microsoft User");
+                window.location.href = "index.html";
+            } catch (error) {
+                alert("Microsoft Login Error: " + error.message);
+            }
+        });
+    </script>
+</body>
+</html>
